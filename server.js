@@ -34,8 +34,8 @@ async function start(silent = false) {
     }
 }
 
-function use(router) {
-    app.use(router);
+function use(handler) {
+    app.use(handler);
 }
 
 function setErrorHandler(errorHandler) {

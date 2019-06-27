@@ -8,5 +8,6 @@ module.exports = {
     router: require("express").Router,
     redis: require("./lib/redis").redis,
     mongodb: require("./lib/mongo").mongo,
-    middlewares: require("./middlewares")
+    middlewares: require("./middlewares"),
+    HttpError: require("./lib/HttpError")
 };

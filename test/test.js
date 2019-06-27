@@ -11,12 +11,8 @@ router.get("/", (req, res) => res.send("Hello world!"));
 router.get("/apiKey", middlewares.apiKey, (req, res) => res.send("Access authorized " + req.appId));
 router.get("/apiSecret", middlewares.apiSecret, (req, res) => res.send("Access authorized " + req.appId));
 router.post("/schema", middlewares.validateBody(schema), (req, res) => res.send("Schema is valid"));
+router.get("/error", (req, res) => {throw new stack.HttpError("", "It works")});
 
 stack.use(router);
-
-stack.setErrorHandler(function(err, req, res, next) {
-    if(err) console.error(err);
-    process.exit(-1);
-})
 
 stack.start();

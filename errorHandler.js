@@ -1,4 +1,4 @@
-const HttpError = require("simplified-http-errors").HttpError;
+const HttpError = require("./lib/HttpError");
 const JsonError = require("express-json-validator-middleware").ValidationError;
 const MongoError = require("mongodb").MongoError;
 
@@ -20,8 +20,7 @@ module.exports = (error, req, res, next) => {
     }
 
     console.error(error);
-    //TODO: log it in sentry
-    return unknowError(res, new HttpError("internal", "Unkonw error occured, please report it", error.message));
+    return unknowError(res, new HttpError("internal", "An unknown error occured, please report it", error.message));
 }
 
 function transformJsonError(err) {
