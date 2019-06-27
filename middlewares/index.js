@@ -1,4 +1,5 @@
 module.exports = {
     apiKey: require("./apiKey"),
-    apiSecret: require("./apiSecret")
+    apiSecret: require("./apiSecret"),
+    validateBody: require("./validator")
 };
