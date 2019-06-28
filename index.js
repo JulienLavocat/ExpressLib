@@ -1,4 +1,4 @@
-const server = require("./server");
+const server = require("./lib/server");
 
 module.exports = {
     start: server.start,

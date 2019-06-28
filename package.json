@@ -1,5 +1,5 @@
 {
-  "name": "expresslib",
+  "name": "@piigo/expresslib",
   "version": "0.1.0",
   "description": "Library to manage express",
   "main": "index.js",
