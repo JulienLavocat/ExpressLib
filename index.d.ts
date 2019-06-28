@@ -34,7 +34,7 @@ declare namespace expresslib {
   /**
    * Return the currently used MongoClient instance
    */
-  var mongo: MongoClient;
+  var mongodb: MongoClient;
   /**
    * Return all availables middlewares from the lib
    */
