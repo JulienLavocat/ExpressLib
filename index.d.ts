@@ -1,6 +1,7 @@
 import * as e from "express";
 import IORedis from "ioredis";
 import { MongoClient } from "mongodb";
+import {JsonWebTokenError} from "jsonwebtoken";
 
 declare namespace expresslib {
   /**
@@ -21,29 +22,29 @@ declare namespace expresslib {
   /**
    * Return the express instance used by the lib
    */
-  var express = e;
+  var express: e.Express;
   /**
    * Return a Router class
    */
-  var router = express.Router;
+  var router: e.Router;
   /**
    * Return the current redis instance
    */
-  var redis = any;
+  var redis: IORedis.Redis;
   /**
    * Return the currently used MongoClient instance
    */
-  var mongo = MongoClient;
+  var mongo: MongoClient;
   /**
    * Return all availables middlewares from the lib
    */
   var middlewares: Middlewares;
+  /**
+   * Return Json Web Tokens utilities (sign, verify, refresh)
+   */
+  var jwt: JWT;
 
   /**
-   * The set of Firebase Functions status codes. The codes are the same at the
-   * ones exposed by gRPC here:
-   * https://github.com/grpc/grpc/blob/master/doc/statuscodes.md
-   *
    * Possible values:
    * - 'cancelled': The operation was cancelled (typically by the caller).
    * - 'unknown': Unknown error or an error from a different error domain.
@@ -119,16 +120,36 @@ interface Middlewares {
 	/**
 	 * Check if a valid api key is contained in either req.body.apiKey or req.query.apiKey
 	 */
-	apiKey: Function;
+	apiKey();
 	/**
 	 * Check if a valid api secret is contained in either req.body.apiSecret or req.query.apiSecret
 	 */
-	apiSecret: Function;
+	apiSecret();
 	/**
 	 * Check if req.body match the provided JSON-chema
 	 */
 	validateBody(schema: any);
 
+}
+
+interface JWT {
+  /**
+   * Generate and sign a JWT using the provided secret key
+   * @param payload Data to encode in token
+   */
+  sign(payload);
+  /**
+   * Verify if token has been issued by service, and return it's decoded content
+   * @param token Token to verify
+   * @throws JsonWebTokenError if verification failed
+   */
+  verify(token);
+  /**
+   * Verify and then re-issue a valid token re-using the old token payload
+   * @param token Token to refresh
+   * @throws JsonWebTokenError if token refresh failed
+   */
+  refresh(token);
 }
 
 export = expresslib;

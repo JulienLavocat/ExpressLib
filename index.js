@@ -9,5 +9,6 @@ module.exports = {
     redis: require("./lib/redis").redis,
     mongodb: require("./lib/mongo").mongo,
     middlewares: require("./middlewares"),
-    HttpError: require("./lib/HttpError")
+    HttpError: require("./lib/HttpError"),
+    jwt: require("./lib/jwt")
 };
