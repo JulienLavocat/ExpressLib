@@ -1,4 +1,4 @@
-const HttpError = require("../lib/HttpError");
+const HttpError = require("../lib/errors/HttpError");
 const redis = require("../lib/redis");
 
 module.exports = async function (req, res, next) {
