@@ -22,10 +22,6 @@ $ npm install @piigo/expresslib
 
 ## Create .env
 
-Note: Currently you can provide environment variables throught a `.env` file.
-You can still load environment variables in other way but don't forget to always have at least an empty .env file, otherwise application will crash.
-A better support for environment variables will be provided in the near future, but pull request are always welcome.
-
 Create a new file named `.env` and then add the following text
 
 ```dosini
@@ -41,6 +37,10 @@ jwtExpiresIn=<Amount of time that your JWT will be valid, ex: 10m>
 
 tokensPrefix=<Prefix to use for every apiKey and apiSecret, ex: tokens.>
 ```
+
+Note: Currently you can provide environment variables throught a `.env` file.
+You can still load environment variables in other way but don't forget to always have at least an empty .env file, otherwise application will crash.
+A better support for environment variables will be provided in the near future, but pull request are always welcome.
 
 ## Usage
 
