@@ -156,17 +156,12 @@ interface JWT {
   refresh(token);
 }
 
+/**
+ * Not functionnal, shoudn't be used
+ */
 interface Terminus {
 
-  /**
-   * A promise that will be resolved when 
-   * @param handler Promise, optionally include a return value to be included as info in the health check response
-   * @param router The route that will be used by healthcheck, by default: /healthcheck
-   * 
-   */
-  setHealthckeck(handler: Promise, route?: string): Terminus;
-  afterShutdown(handler: Function): Terminus;
-  beforeShutdown(handler: Promise): Terminus;
+  
 
 }
 
