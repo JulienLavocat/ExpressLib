@@ -24,6 +24,10 @@ declare namespace expresslib {
    */
   var express: e.Express;
   /**
+   * Return  the terminus object used for healthcheck and gracefull shutdown
+   */
+  var terminus: Terminus;
+  /**
    * Return a Router class
    */
   var router: e.Router;
@@ -150,6 +154,20 @@ interface JWT {
    * @throws JsonWebTokenError if token refresh failed
    */
   refresh(token);
+}
+
+interface Terminus {
+
+  /**
+   * A promise that will be resolved when 
+   * @param handler Promise, optionally include a return value to be included as info in the health check response
+   * @param router The route that will be used by healthcheck, by default: /healthcheck
+   * 
+   */
+  setHealthckeck(handler: Promise, route?: string): Terminus;
+  afterShutdown(handler: Function): Terminus;
+  beforeShutdown(handler: Promise): Terminus;
+
 }
 
 export = expresslib;

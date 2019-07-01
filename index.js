@@ -5,6 +5,7 @@ module.exports = {
     use: server.use,
     setErrorHandler: server.setErrorHandler,
     express: server.app,
+    terminus: require("./lib/terminus"),
     router: require("express").Router,
     redis: require("./lib/redis").redis,
     mongodb: require("./lib/mongo").mongo,
