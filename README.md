@@ -65,3 +65,43 @@ stack.use(router);
 stack.start();
 
 ```
+
+# Documentation
+
+## Middlewares
+
+ExpressLib provides you with several middlewares
+
+### apiKey
+
+This middleware will check if there is an `apiKey` in either `body` or `query parameters`, fetch it's data in Redis and populates `req.apiKeyData` with it.
+
+If one of those operations fails, a permission denied http error will be sent as result (if it's a redis error, it will be a http 500).
+
+In order to create an API Key you just have to add a new key in redis (using SET) following this format:
+`<tokensPrefix>.keys.<yourApiKey>` and set anythings you want as a value. Just remeber that the middleware will not perform any kind of parsing or transformation on data.
+Here `<tokensPrefix>` refers to the `tokensPrefix` set in your configuration
+
+### apiSecret
+
+This middleware will check if there is an `apiSecret` in either `body` or `query parameters`, fetch it's data in Redis and populates `req.apiSecretData` with it.
+
+If one of those operations fails, a permission denied http error will be sent as result (if it's a redis error, it will be a http 500).
+
+In order to create an API Secret you just have to add a new key in redis (using SET) following this format:
+`<tokensPrefix>.secret.<yourApiKey>` and set anythings you want as a value. Just remember that the middleware will not perform any kind of parsing or transformation on data.
+Here `<tokensPrefix>` refers to the `tokensPrefix` set in your configuration.
+
+### jwt
+
+This middleware will check if a Json Web Token is present in either `body` or `query paramaters`, verify it's signature and populates req.jwt with the decoded token.
+
+If one of those operations fails, a permission denied or invalid token error will be sent as  result.
+
+Signature verification is achieved using the provided JWT-utils, which it-self use the `jwtSecretKey` environment variable.
+
+### validateBody
+
+This middleware will match the `req.body` using the provided json schema. If it fails an invalid argument error will be sent with the details of what's wrong in the request.
+
+This middleware only match the body.
