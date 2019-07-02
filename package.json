@@ -23,7 +23,8 @@
     "helmet": "^3.18.0",
     "ioredis": "^4.10.0",
     "jsonwebtoken": "^8.5.1",
-    "mongodb": "^3.2.7"
+    "mongodb": "^3.2.7",
+    "uuid": "^3.3.2"
   },
   "devDependencies": {}
 }

@@ -139,21 +139,31 @@ interface Middlewares {
 interface JWT {
   /**
    * Generate and sign a JWT using the provided secret key
-   * @param payload Data to encode in token
+   * @param {object} payload Data to encode in token
+   * @return {string} JWT containing the payload
    */
-  sign(payload);
+  sign(payload: object);
   /**
    * Verify if token has been issued by service, and return it's decoded content
-   * @param token Token to verify
+   * @param {string} token Token to verify
+   * @return {object} Claims of the provided JWT
    * @throws JsonWebTokenError if verification failed
    */
-  verify(token);
+  verify(token: string);
+  /**
+   * Decode a token and return it's claims. This method will NOT verify if the token
+   * is VALID.
+   * @param {string} token The token to decode
+   * @return {object} Claims of the provided JWT
+   */
+  decode(token: string)
   /**
    * Verify and then re-issue a valid token re-using the old token payload
-   * @param token Token to refresh
+   * @param {string} token Token to refresh
+   * @return {string} A refreshed token
    * @throws JsonWebTokenError if token refresh failed
    */
-  refresh(token);
+  refresh(token: string);
 }
 
 /**
