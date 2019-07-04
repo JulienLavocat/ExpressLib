@@ -2,5 +2,6 @@ module.exports = {
     apiKey: require("./apiKey"),
     apiSecret: require("./apiSecret"),
     validateBody: require("./validator"),
-    jwt: require("./jwt")
+    jwt: require("./jwt"),
+    needConfig: require("./needConfig")
 };

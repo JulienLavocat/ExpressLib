@@ -132,7 +132,15 @@ interface Middlewares {
 	/**
 	 * Check if req.body match the provided JSON-chema
 	 */
-	validateBody(schema: any);
+  validateBody(schema: any);
+  /**
+   * Check if req.body.token or req.query.token contains a valid JWT
+   */
+  jwt();
+  /**
+   * Make sure that the application configuration (as defined in apiKeyData) is in req.appConfig
+   */
+  needConfig();
 
 }
 

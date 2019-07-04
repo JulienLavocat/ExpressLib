@@ -8,7 +8,7 @@ const schema = {
 
 const router = stack.router();
 router.get("/", (req, res) => res.send("Hello world!"));
-router.get("/apiKey", middlewares.apiKey, (req, res) => res.send("Access authorized " + req.appId));
+router.get("/apiKey", middlewares.apiKey, middlewares.needConfig, (req, res) => res.send(req.appConfig));
 router.get("/apiSecret", middlewares.apiSecret, (req, res) => res.send("Access authorized " + req.appId));
 router.post("/schema", middlewares.validateBody(schema), (req, res) => res.send("Schema is valid"));
 router.get("/error", (req, res) => {throw new stack.HttpError("cancelled", "It works")});

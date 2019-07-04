@@ -14,7 +14,7 @@ module.exports = async function (req, res, next) {
         if(token === null)
             throw new HttpError("permission-denied", "Invalid API key");
 
-        req.apiSecretData = token;
+        req.appId = token;
         next();
 
     } catch (error) {
