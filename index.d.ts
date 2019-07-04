@@ -141,6 +141,10 @@ interface Middlewares {
    * Make sure that the application configuration (as defined in apiKeyData) is in req.appConfig
    */
   needConfig();
+  /**
+   * Check if JWT isn't blacklisted (on logout by example)
+   */
+  isTokenBlacklisted();
 
 }
 

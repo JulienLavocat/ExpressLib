@@ -3,5 +3,6 @@ module.exports = {
     apiSecret: require("./apiSecret"),
     validateBody: require("./validator"),
     jwt: require("./jwt"),
-    needConfig: require("./needConfig")
+    needConfig: require("./needConfig"),
+    isTokenBlacklisted: require("./isTokenBlacklisted")
 };
