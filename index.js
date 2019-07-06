@@ -11,5 +11,6 @@ module.exports = {
     mongodb: require("./lib/mongo").mongo,
     middlewares: require("./middlewares"),
     HttpError: require("./lib/errors/HttpError"),
-    jwt: require("./lib/jwt")
+    jwt: require("./lib/jwt"),
+    utils: require("./lib/utils")
 };

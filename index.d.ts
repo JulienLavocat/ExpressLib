@@ -13,7 +13,7 @@ declare namespace expresslib {
    *  Use a request handler (similar to express.use)
    * @param handler Request handler to use
    */
-  function use(handler: e.IRouterHandler);
+  function use(handler: e.RequestHandler);
   /**
    * Set a new error handler, if not set a default one will be used
    * @param errorHandler Error handler function to use
@@ -47,6 +47,10 @@ declare namespace expresslib {
    * Return Json Web Tokens utilities (sign, verify, refresh)
    */
   var jwt: JWT;
+  /**
+   * Return library utility functions
+   */
+  var utils: Utils;
 
   /**
    * Possible values:
@@ -181,9 +185,16 @@ interface JWT {
 /**
  * Not functionnal, shoudn't be used
  */
-interface Terminus {
+interface Terminus {}
 
-  
+interface Utils {
+
+  /**
+   * Validate the current token claims against the provided ones.
+   * @param {objec} claims Claims that the token should match
+   * @throws HttpError with permission denied if token doesn't match one of the expected claims.
+   */
+  validateClaims(claims: object);
 
 }
 
