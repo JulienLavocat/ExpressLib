@@ -10,7 +10,14 @@ A simple yet powerfull Express library to build REST API using Express, MongoDB 
  - Simple HTTP error management using `throw` and stack.HttpError
  - Redis and MongoDB client included
  - Gracefull shutdown (Not Yet Implemented)
- - JSON Web Tokens utils like `sign`, `verify`, and `refresh` 
+ - JSON Web Tokens utils like `sign`, `verify`, and `refresh`
+
+# TODO
+
+ - Finish terminus support
+ - Add request counter
+ - Add request logger
+ - Transform utils.validateClaims into a middleware
 
 # Quick Start
 
