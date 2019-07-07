@@ -7,8 +7,8 @@ module.exports = async function (req, res, next) {
         
         const key = req.body.apiSecret || req.query.apiSecret;
         
-        delete req.body.apiKey;
-        delete req.query.apiKey;
+        delete req.body.apiSecret;
+        delete req.query.apiSecret;
 
         if(!key)
             throw new HttpError("permission-denied", "Invalid API key");
