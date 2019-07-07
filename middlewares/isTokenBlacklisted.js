@@ -10,6 +10,10 @@ const permissionDenied = new HttpError("permission-denied", "Invalid token");
 module.exports = async function (req, res, next) {
     try {
         const token = (req.query.token || req.body.token)
+
+        delete req.body.token;
+        delete req.query.token;
+
         if (!token)
             throw permissionDenied;
 

@@ -28,7 +28,7 @@ declare namespace expresslib {
    */
   var terminus: Terminus;
   /**
-   * Return a Router class
+   * Return an express Router class
    */
   var router: e.Router;
   /**
