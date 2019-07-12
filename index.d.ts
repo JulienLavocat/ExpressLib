@@ -1,24 +1,30 @@
 import * as e from "express";
 import IORedis from "ioredis";
 import { MongoClient } from "mongodb";
-import {JsonWebTokenError} from "jsonwebtoken";
+import { JsonWebTokenError } from "jsonwebtoken";
 
 declare namespace expresslib {
   /**
    * Start the express app
    * @param silent define if start should be silent
    */
-  function start(silent?: boolean);
+  function start(silent?: boolean): void;
   /**
-   *  Use a request handler (similar to express.use)
-   * @param handler Request handler to use
+   * Use one or more request handlers (similar to express.use)
+   * @param handler Request handlers to use
    */
-  function use(handler: e.RequestHandler);
+  function use(handlers: e.RequestHandler[]): void;
+  /**
+   * Use one or more request handlers (similar to express.use) path-based
+   * @param path Path on which handler will apply
+   * @param handler Request handlers to use
+   */
+  function use(path: string, handlers: e.RequestHandler[]): void;
   /**
    * Set a new error handler, if not set a default one will be used
    * @param errorHandler Error handler function to use
    */
-  function setErrorHandler(errorHandler: Function);
+  function setErrorHandler(errorHandler: Function): void;
   /**
    * Return the express instance used by the lib
    */
@@ -124,32 +130,30 @@ declare namespace expresslib {
 }
 
 interface Middlewares {
-
-	/**
-	 * Check if a valid api key is contained in either req.body.apiKey or req.query.apiKey
-	 */
-	apiKey();
-	/**
-	 * Check if a valid api secret is contained in either req.body.apiSecret or req.query.apiSecret
-	 */
-	apiSecret();
-	/**
-	 * Check if req.body match the provided JSON-chema
-	 */
-  validateBody(schema: any);
+  /**
+   * Check if a valid api key is contained in either req.body.apiKey or req.query.apiKey
+   */
+  apiKey(): void;
+  /**
+   * Check if a valid api secret is contained in either req.body.apiSecret or req.query.apiSecret
+   */
+  apiSecret(): void;
+  /**
+   * Check if req.body match the provided JSON-chema
+   */
+  validateBody(schema: any): void;
   /**
    * Check if req.body.token or req.query.token contains a valid JWT
    */
-  jwt();
+  jwt(): void;
   /**
    * Make sure that the application configuration (as defined in apiKeyData) is in req.appConfig
    */
-  needConfig();
+  needConfig(): void;
   /**
    * Check if JWT isn't blacklisted (on logout by example)
    */
-  isTokenBlacklisted();
-
+  isTokenBlacklisted(): void;
 }
 
 interface JWT {
@@ -158,44 +162,37 @@ interface JWT {
    * @param {object} payload Data to encode in token
    * @return {string} JWT containing the payload
    */
-  sign(payload: object);
+  sign(payload: object): string;
   /**
    * Verify if token has been issued by service, and return it's decoded content
    * @param {string} token Token to verify
    * @return {object} Claims of the provided JWT
    * @throws JsonWebTokenError if verification failed
    */
-  verify(token: string);
+  verify(token: string): any;
   /**
    * Decode a token and return it's claims. This method will NOT verify if the token
    * is VALID.
    * @param {string} token The token to decode
    * @return {object} Claims of the provided JWT
    */
-  decode(token: string)
+  decode(token: string): any;
   /**
    * Verify and then re-issue a valid token re-using the old token payload
    * @param {string} token Token to refresh
    * @return {string} A refreshed token
    * @throws JsonWebTokenError if token refresh failed
    */
-  refresh(token: string);
+  refresh(token: string): string;
 }
 
-/**
- * Not functionnal, shoudn't be used
- */
-interface Terminus {}
-
 interface Utils {
-
   /**
    * Validate the current token claims against the provided ones.
    * @param {objec} claims Claims that the token should match
    * @throws HttpError with permission denied if token doesn't match one of the expected claims.
    */
-  validateClaims(claims: object);
-
+  validateClaims(claims: object): void;
 }
 
 export = expresslib;

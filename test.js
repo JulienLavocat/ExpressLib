@@ -38,6 +38,6 @@ router.get("/jwt", jwt, (req, res) => {
     }
 });
 
-stack.use(router);
+stack.use("/routed", router);
 
 stack.start();
