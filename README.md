@@ -14,11 +14,11 @@ A simple yet powerfull Express library to build REST API using Express, MongoDB 
 
 # TODO
 
- - Finish terminus support
- - Add request counter
- - Add request logger
- - Transform utils.validateClaims into a middleware
- - Consider merge isTokenBlacklisted into jwt middleware
+ - Finish terminus support - Not planned for near future
+ - Add application metrics - WIP
+ - Add request counter - WIP
+ - Add request logger - WIP
+ - Transform utils.validateClaims into a middleware - Help needed
 
 # Quick Start
 
