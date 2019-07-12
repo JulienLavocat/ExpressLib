@@ -18,6 +18,7 @@ A simple yet powerfull Express library to build REST API using Express, MongoDB 
  - Add request counter
  - Add request logger
  - Transform utils.validateClaims into a middleware
+ - Consider merge isTokenBlacklisted into jwt middleware
 
 # Quick Start
 
@@ -103,8 +104,35 @@ If one of those operations fails, a permission denied or invalid token error wil
 
 Signature verification is achieved using the provided JWT-utils, which it-self use the `jwtSecretKey` environment variable.
 
-### validateBody
+### validation middlewares
+
+ExpressLib provide 3 validation middlewares, they are all JSON-Schemasbased validators, but they works on differents parts of the request.  
+
+If it fails an invalid argument error will be sent with the details of what's wrong in the request.
+
+#### validateBody
+
+This middleware will match the `req.body` using the provided json schema. 
+
+#### validateQuery
+
+This middleware will match the `req.query` using the provided json schema. 
+
+#### validate
+
+This middleware will match any parameters using provided properties and schemas like this:
+
+```javascript
+const bodySchema = {/* Your schema for body goes here */};
+const querySchema = {/* Your schema for query goes here */};
+
+router.get("/", validate({body: bodySchema, query: querySchema}), (req, res) => res.send("Valid schema"));
+```
+
+#### validateBody
 
 This middleware will match the `req.body` using the provided json schema. If it fails an invalid argument error will be sent with the details of what's wrong in the request.
 
-This middleware only match the body.
+### isTokenBlacklisted
+
+This middleware is here as legacy, since it is now included in `jwt`. It's goal is to verify that the decoded token isn't blacklisted (when a user disconnect, change it's password, ...). If it is, then the request is rejected with a permission denied error.

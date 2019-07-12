@@ -2,6 +2,12 @@ const Validator = require("express-json-validator-middleware").Validator;
 
 const validate = new Validator().validate;
 
-module.exports = function (schema) {
+exports.body = function (schema) {
     return validate({body: schema});
+}
+exports.query = function (schema) {
+    return validate({query: schema});
+}
+exports.properties = function (validationObject) {
+    return validate(validationObject);
 }
