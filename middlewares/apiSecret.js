@@ -19,7 +19,7 @@ module.exports = async function (req, res, next) {
         if (token === null)
             return next(permissionDenied);
 
-        req.appId = token;
+        req.secretData = token;
         next();
 
     } catch (error) {
