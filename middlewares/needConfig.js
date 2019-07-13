@@ -11,10 +11,10 @@ module.exports = async function (req, res, next) {
             result = await getAndCache(req.appId);
         
         if(!result)
-            throw new HttpError("internal", "Unable to find application configuration", {appId: req.appId});
+            next(new HttpError("internal", "Unable to find application configuration", {appId: req.appId}));
 
         if(result._id !== req.appId)
-            throw new HttpError("invalid-argument", "Requested appId does not match");
+            next(new HttpError("invalid-argument", "Requested appId does not match"));
 
         req.appConfig = result;
 

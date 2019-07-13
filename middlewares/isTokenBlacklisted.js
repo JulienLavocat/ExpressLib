@@ -15,11 +15,11 @@ module.exports = async function (req, res, next) {
         delete req.query.token;
 
         if (!token)
-            throw permissionDenied;
+            return next(permissionDenied);
 
         const decoded = jwt.decode(token);
-        if(!decoded || !decoded.jti)
-            throw permissionDenied;
+        if (!decoded || !decoded.jti)
+            return next(permissionDenied);
 
         if (await redis.isTokenBlacklisted(decoded.jti))
             return next(permissionDenied);
