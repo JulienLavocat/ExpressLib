@@ -1,5 +1,6 @@
 const HttpError = require("../lib/errors/HttpError");
 const jwt = require("../lib/jwt");
+const redis = require("../lib/redis");
 
 const permissionDenied = new HttpError("permission-denied", "Invalid token");
 
