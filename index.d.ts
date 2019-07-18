@@ -123,15 +123,15 @@ declare namespace expresslib {
     readonly details?: any;
     constructor(code: FunctionsErrorCode, message: string, details?: any);
     /**
-     * Set the code of this error
+     * Return a new instance with of this error with the updated code
      */
     setCode(code: FunctionsErrorCode): void;
     /**
-     * Set the message of this error
+     * Return a new instance with of this error with the updated message
      */
     setMessage(message: string): void;
     /**
-     * Set the details of this error
+     * Return a new instance with of this error with the updated details
      */
     setDetails(details: any): void;
   }
