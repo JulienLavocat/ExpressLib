@@ -30,10 +30,6 @@ declare namespace expresslib {
    */
   var express: e.Express;
   /**
-   * Return  the terminus object used for healthcheck and gracefull shutdown
-   */
-  var terminus: Terminus;
-  /**
    * Return an express Router class
    */
   var router: e.Router;
@@ -126,6 +122,18 @@ declare namespace expresslib {
      */
     readonly details?: any;
     constructor(code: FunctionsErrorCode, message: string, details?: any);
+    /**
+     * Set the code of this error
+     */
+    setCode(code: FunctionsErrorCode): void;
+    /**
+     * Set the message of this error
+     */
+    setMessage(message: string): void;
+    /**
+     * Set the details of this error
+     */
+    setDetails(details: any): void;
   }
 }
 
