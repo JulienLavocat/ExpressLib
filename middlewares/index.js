@@ -7,6 +7,5 @@ module.exports = {
     validateQuery: validator.query,
     validate: validator.properties,
     jwt: require("./jwt"),
-    needConfig: require("./needConfig"),
     isTokenBlacklisted: require("./isTokenBlacklisted")
 };
