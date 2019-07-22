@@ -16,7 +16,7 @@ const schema = {
 
 const router = stack.router();
 router.get("/",                                                                          (req, res) => res.send("Hello world!"));
-router.get("/apiKey",                                               apiKey, needConfig,  (req, res) => res.send(req.appConfig));
+router.get("/apiKey",                                               apiKey,              (req, res) => res.send(req.appConfig));
 router.get("/apiSecret",                                            apiSecret,           (req, res) => res.send("Access authorized " + req.appId));
 router.post("/schema",    validateBody(schema),                                          (req, res) => res.send("Schema is valid"));
 router.get("/error",                                                                     (req, res) => {

@@ -33,6 +33,8 @@ $ npm install @piigo/expresslib
 Create a new file named `.env` and then add the following text
 
 ```dosini
+mongodbEnabled=<true/false>
+redisEnabled=<true/false>
 mongoUrl=<Your MongoDB connection url, ex: localhost:27017>
 redisUrl=<Your redis url under the format host:port, ex: localhost:6379>
 redisAuth=<Redis password, ex: qwerty>
