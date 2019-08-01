@@ -8,7 +8,7 @@ declare namespace expresslib {
    * Start the express app
    * @param silent define if start should be silent
    */
-  function start(silent?: boolean): void;
+  function start(callback?: Function, silent?: boolean): void;
   /**
    * Use one or more request handlers (similar to express.use)
    * @param handler Request handlers to use
